@@ -3,17 +3,23 @@ package com.example.collinsherman.asteroidzgame.model;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import com.example.collinsherman.asteroidzgame.model.components.Speed;
+
 public class Ship {
 
     private Bitmap bitmap;
     private int x;
     private int y;
+    private Speed speed;
 
     public Ship(Bitmap bitmap, int x, int y) {
         this.bitmap = bitmap;
         this.x = x;
         this.y = y;
+        speed = new Speed(0, 0);
     }
+
+    public Speed getSpeed() { return speed; }
 
     public Bitmap getBitmap() { return bitmap; }
 
@@ -28,10 +34,11 @@ public class Ship {
     public void setY(int y) { this.y = y; }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap, (canvas.getWidth() / 2), (canvas.getHeight()), null);
+        canvas.drawBitmap(bitmap, x - (canvas.getWidth() / 2), y - (canvas.getHeight() / 2), null);
     }
 
     public void update() {
-        x += (getX());
+        x += (speed.getXVel());
+        y += (speed.getYVel() * speed.getYDir());
     }
 }

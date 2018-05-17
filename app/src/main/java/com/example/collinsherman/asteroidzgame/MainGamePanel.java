@@ -38,7 +38,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         asteroid1 = new Asteroid(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid1), rand.nextInt(getWidth() + 86), 85);
         asteroid2 = new Asteroid(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid2), rand.nextInt(getWidth() + 86), 85);
         asteroid3 = new Asteroid(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid3), rand.nextInt(getWidth() + 86), 85);
-        ship = new Ship(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid1), getWidth() / 2, getHeight() + 1);
+        ship = new Ship(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid1), 970, 2200);
         // Create game loop thread
         thread = new MainThread(getHolder(), this);
         // Allows handling of events
@@ -100,5 +100,6 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         asteroid1.update();
         asteroid2.update();
         asteroid3.update();
+        ship.update();
     }
 }
