@@ -15,6 +15,12 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "View added");
     }
 
+ /*  @Override
+    public void onCreateToolbar(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.settings_list, menu);
+    }
+*/
     @Override
     protected void onDestroy() {
         Log.d(TAG, "Destroying...");
