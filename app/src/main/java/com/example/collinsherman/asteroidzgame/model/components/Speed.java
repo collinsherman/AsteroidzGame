@@ -5,12 +5,12 @@ public class Speed {
     public static final int DIRECTION_DOWN = 1;
 
     private float xVel = 0;
-    private float yVel = 5;
+    private float yVel = 10;
     private int yDir = DIRECTION_DOWN;
 
     public Speed() {
         this.xVel = 0;
-        this.yVel = 5;
+        this.yVel = 10;
     }
 
     public Speed(float xVel, float yVel) {
@@ -31,4 +31,8 @@ public class Speed {
     public int getYDir() { return yDir; }
 
     public void setYDir(int yDir) { this.yDir = yDir; }
+
+    public void toggleYDirection() {
+        yDir = yDir * -1;
+    }
 }

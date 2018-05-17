@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AsteroidzGame</string>
+    <string name="left">L</string>
+    <string name="right">R</string>
 </resources>
