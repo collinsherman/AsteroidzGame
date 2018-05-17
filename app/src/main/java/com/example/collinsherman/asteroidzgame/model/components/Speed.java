@@ -4,13 +4,13 @@ public class Speed {
 
     public static final int DIRECTION_DOWN = 1;
 
-    private float xVel = 1;
-    private float yVel = 1;
+    private float xVel = 0;
+    private float yVel = 5;
     private int yDir = DIRECTION_DOWN;
 
     public Speed() {
-        this.xVel = 1;
-        this.yVel = 1;
+        this.xVel = 0;
+        this.yVel = 5;
     }
 
     public Speed(float xVel, float yVel) {

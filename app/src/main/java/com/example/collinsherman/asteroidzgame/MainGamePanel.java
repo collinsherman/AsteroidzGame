@@ -2,6 +2,8 @@ package com.example.collinsherman.asteroidzgame;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -53,5 +55,20 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
             }
         }
         Log.d(TAG, "Thread was shut down cleanly.");
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        canvas.drawColor(Color.BLACK);
+        asteroid.draw(canvas);
+    }
+
+    public void update() {
+        // Check collision with bottom
+        if (asteroid.getSpeed().getYDir() == Speed.DIRECTION_DOWN && asteroid.getY() + asteroid.getBitmap().getHeight() / 2 <= 0) {
+            //TODO: remove from screen
+        }
+
+        asteroid.update();
     }
 }
