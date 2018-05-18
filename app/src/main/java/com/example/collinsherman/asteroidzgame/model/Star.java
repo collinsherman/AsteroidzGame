@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 
 import com.example.collinsherman.asteroidzgame.model.components.Speed;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Star {
 
     private Bitmap bitmap;
@@ -16,7 +18,7 @@ public class Star {
         this.bitmap = bitmap;
         this.x = x;
         this.y = y;
-        speed = new Speed(0, 50);
+        speed = new Speed(0, 37);
     }
 
     public int getLeft() {

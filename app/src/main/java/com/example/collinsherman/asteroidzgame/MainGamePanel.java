@@ -40,6 +40,10 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
     private Star star6;
     private Star star7;
     private Star star8;
+    private Star star9;
+    private Star star10;
+    private Star star11;
+    private Star star12;
     private Asteroid asteroid1;
     private Asteroid asteroid2;
     private Asteroid asteroid3;
@@ -54,15 +58,19 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         star1 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star1), 84, 600);
         star2 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star2), 200, 200);
         star3 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star3), 300, 300);
-        star4 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star1), 400, 1500);
+        star4 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star4), 400, 1500);
         star5 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star1), 500, 900);
         star6 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star2), 600, 1900);
         star7 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star3), 700, 1100);
-        star8 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star2), 800, 400);
+        star8 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star4), 800, 700);
+        star9 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star1), 900, 100);
+        star10 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star2), 1000, 2100);
+        star11 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star3), 1100, 2000);
+        star12 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star4), 1200, 1500);
         asteroid1 = new Asteroid(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid1), 84, 84);
         asteroid2 = new Asteroid(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid2), 467, 84);
         asteroid3 = new Asteroid(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid3), 800, 84);
-        ship = new Ship(BitmapFactory.decodeResource(getResources(), R.drawable.ss_red), 980, 2200);
+        ship = new Ship(BitmapFactory.decodeResource(getResources(), R.drawable.ss_red), 300, 1500);
         ship.setYSpeed(0);
         Log.d(TAG, "ShipY: "+ shipY);
         Log.d(TAG, "ShipX: "+ shipX);
@@ -110,6 +118,10 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         star6.draw(canvas);
         star7.draw(canvas);
         star8.draw(canvas);
+        star9.draw(canvas);
+        star10.draw(canvas);
+        star11.draw(canvas);
+        star12.draw(canvas);
         asteroid1.draw(canvas);
         asteroid2.draw(canvas);
         asteroid3.draw(canvas);
@@ -117,15 +129,15 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
     }
 
     public void update() {
-        int shipY = HEIGHT - (spaceship.getBitmap().getHeight()/2);
-        spaceship.setY(shipY);
+        int shipY = HEIGHT - (ship.getBitmap().getHeight()/2) - 25;
+        ship.setY(shipY);
 
-        if (spaceship.getSpeed().getXDir() == 1 && spaceship.getX() + spaceship.getBitmap().getWidth() / 2 >= WIDTH) {
-            spaceship.setXSpeed(0);
+        if (ship.getSpeed().getXDir() == 1 && ship.getX() + ship.getBitmap().getWidth() / 2 >= WIDTH) {
+            ship.setXSpeed(0);
         }
 
-        if (spaceship.getSpeed().getXDir() == -1 && spaceship.getX() - spaceship.getBitmap().getWidth() / 2 <= 0) {
-            spaceship.setXSpeed(0);
+        if (ship.getSpeed().getXDir() == -1 && ship.getX() - ship.getBitmap().getWidth() / 2 <= 0) {
+            ship.setXSpeed(0);
         }
 //                if ((asteroid1.getLeft() >= ship.getLeft() && asteroid1.getLeft() <= ship.getRight())
 //                || (asteroid1.getRight() >= ship.getLeft() && asteroid1.getRight() <= ship.getRight())
@@ -181,7 +193,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         if (star4.getTop() >= getHeight() || star4.getLeft() >= getWidth()
                 || star4.getBottom() <= 0 || star4.getRight() <= 0) {
             int randomX = ThreadLocalRandom.current().nextInt(84, 1000);
-            star4 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star2), randomX, 16);
+            star4 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star4), randomX, 16);
         }
 
         if (star5.getTop() >= getHeight() || star5.getLeft() >= getWidth()
@@ -205,7 +217,31 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         if (star8.getTop() >= getHeight() || star8.getLeft() >= getWidth()
                 || star8.getBottom() <= 0 || star8.getRight() <= 0) {
             int randomX = ThreadLocalRandom.current().nextInt(84, 1000);
-            star8 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star3), randomX, 16);
+            star8 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star4), randomX, 16);
+        }
+
+        if (star9.getTop() >= getHeight() || star9.getLeft() >= getWidth()
+                || star9.getBottom() <= 0 || star9.getRight() <= 0) {
+            int randomX = ThreadLocalRandom.current().nextInt(84, 1000);
+            star9 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star1), randomX, 16);
+        }
+
+        if (star10.getTop() >= getHeight() || star10.getLeft() >= getWidth()
+                || star10.getBottom() <= 0 || star10.getRight() <= 0) {
+            int randomX = ThreadLocalRandom.current().nextInt(84, 1000);
+            star10 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star2), randomX, 16);
+        }
+
+        if (star11.getTop() >= getHeight() || star11.getLeft() >= getWidth()
+                || star11.getBottom() <= 0 || star11.getRight() <= 0) {
+            int randomX = ThreadLocalRandom.current().nextInt(84, 1000);
+            star11 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star3), randomX, 16);
+        }
+
+        if (star12.getTop() >= getHeight() || star12.getLeft() >= getWidth()
+                || star12.getBottom() <= 0 || star12.getRight() <= 0) {
+            int randomX = ThreadLocalRandom.current().nextInt(84, 1000);
+            star12 = new Star(BitmapFactory.decodeResource(getResources(), R.drawable.star4), randomX, 16);
         }
 
         star1.update();
@@ -216,6 +252,10 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         star6.update();
         star7.update();
         star8.update();
+        star9.update();
+        star10.update();
+        star11.update();
+        star12.update();
         asteroid1.update();
         asteroid2.update();
         asteroid3.update();
@@ -228,10 +268,10 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
             xClick = (int)event.getX();
             yClick = (int)event.getY();
 
-            if (xClick < spaceship.getX()+(spaceship.getBitmap().getWidth()/2) && xClick > spaceship.getX()-(spaceship.getBitmap().getWidth()/2)){
-                if (yClick < spaceship.getY()+(spaceship.getBitmap().getHeight()/2) && yClick > spaceship.getY()-(spaceship.getBitmap().getHeight()/2)){
+            if (xClick < ship.getX()+(ship.getBitmap().getWidth()/2) && xClick > ship.getX()-(ship.getBitmap().getWidth()/2)){
+                if (yClick < ship.getY()+(ship.getBitmap().getHeight()/2) && yClick > ship.getY()-(ship.getBitmap().getHeight()/2)){
                     Log.d(TAG, "Color index: "+colorIndex);
-                    spaceship.setBitmap(changeColor(colorIndex));
+                    ship.setBitmap(changeColor(colorIndex));
                     if (colorIndex == 5) {
                         colorIndex = 1;
                     }
@@ -241,15 +281,15 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
                 }
             }
             else if (xClick > WIDTH/2) {
-                spaceship.setXDirection(1);
-                spaceship.setXSpeed(20);
+                ship.setXDirection(1);
+                ship.setXSpeed(20);
             } else if (xClick < WIDTH/2) {
-                spaceship.setXDirection(-1);
-                spaceship.setXSpeed(20);
+                ship.setXDirection(-1);
+                ship.setXSpeed(20);
             }
             }
         if (event.getAction() == MotionEvent.ACTION_UP) {
-           spaceship.setXSpeed(0);
+           ship.setXSpeed(0);
         }
         return true;
     }
