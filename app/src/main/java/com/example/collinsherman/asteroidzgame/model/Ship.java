@@ -33,6 +33,14 @@ public class Ship {
 
     public void setY(int y) { this.y = y; }
 
+    public int getLeft() { return x - bitmap.getWidth() / 2; }
+
+    public int getRight() { return (x + bitmap.getWidth() / 2); }
+
+    public int getTop() { return (y - bitmap.getHeight() / 2); }
+
+    public int getBottom() { return (y + bitmap.getHeight() / 2);}
+
     public void draw(Canvas canvas) {
         canvas.drawBitmap(bitmap, x - (canvas.getWidth() / 2), y - (canvas.getHeight() / 2), null);
     }
