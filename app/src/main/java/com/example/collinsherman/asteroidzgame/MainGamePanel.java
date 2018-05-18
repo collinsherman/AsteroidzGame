@@ -1,21 +1,16 @@
 package com.example.collinsherman.asteroidzgame;
 
-import android.app.Activity;
+
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
-import android.os.Bundle;
-import android.preference.PreferenceActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.animation.Animation;
-import android.widget.Toast;
 
 import com.example.collinsherman.asteroidzgame.model.Asteroid;
 import com.example.collinsherman.asteroidzgame.model.SpaceShip;
@@ -33,18 +28,17 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
     private int shipX = 0;
     private int shipY = 0;
 
-    private int shipPosX = 0;
+    private int colorIndex = 1;
 
     private MainThread thread;
     private Asteroid asteroid;
     private SpaceShip spaceship;
-    private Speed speed;
 
     public MainGamePanel(Context context) {
         super(context);
         // Callback intercepts events
         getHolder().addCallback(this);
-        // Creates droid and loads bitmap
+        // Creates drawables and loads bitmap
         asteroid = new Asteroid(BitmapFactory.decodeResource(getResources(), R.drawable.asteroid1), 50, 50);
         spaceship = new SpaceShip(BitmapFactory.decodeResource(getResources(), R.drawable.ss_blue),  400, 1000);
         spaceship.setYSpeed(0);
@@ -93,6 +87,7 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
     public void update() {
         int shipY = HEIGHT - (spaceship.getBitmap().getHeight()/2);
         spaceship.setY(shipY);
+
         // Check collision with bottom
         if (asteroid.getSpeed().getYDir() == Speed.DIRECTION_DOWN && asteroid.getY() + asteroid.getBitmap().getHeight() / 2 <= 0) {
             //TODO: remove from screen
@@ -115,47 +110,51 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             xClick = (int)event.getX();
             yClick = (int)event.getY();
-            Log.d(TAG, "Ship x: "+spaceship.getX());
-            Log.d(TAG, "Ship y: "+spaceship.getY());
 
             if (xClick < spaceship.getX()+(spaceship.getBitmap().getWidth()/2) && xClick > spaceship.getX()-(spaceship.getBitmap().getWidth()/2)){
                 if (yClick < spaceship.getY()+(spaceship.getBitmap().getHeight()/2) && yClick > spaceship.getY()-(spaceship.getBitmap().getHeight()/2)){
-                    Log.d(TAG, "Settings clicked!");
+                    Log.d(TAG, "Color index: "+colorIndex);
+                    spaceship.setBitmap(changeColor(colorIndex));
+                    if (colorIndex == 5) {
+                        colorIndex = 1;
+                    }
+                    else {
+                        colorIndex ++;
+                    }
                 }
             }
-            if (xClick > WIDTH/2) {
-                Log.d(TAG, "Right side clicked!");
+            else if (xClick > WIDTH/2) {
                 spaceship.setXDirection(1);
-                spaceship.setXSpeed(10);
+                spaceship.setXSpeed(20);
             } else if (xClick < WIDTH/2) {
-                Log.d(TAG, "Left side clicked!");
                 spaceship.setXDirection(-1);
-                spaceship.setXSpeed(10);
-            } else if (xClick == spaceship.getX() && yClick == spaceship.getY()) {
-                Log.d(TAG, "Ship clicked!");
-            } else {
-                Log.d(TAG, "Coords: x=" + xClick + ",y=" + yClick);
+                spaceship.setXSpeed(20);
             }
             }
-
         if (event.getAction() == MotionEvent.ACTION_UP) {
            spaceship.setXSpeed(0);
         }
         return true;
     }
 
-//    public getCanvasCoords(int bitmapDimensions, int xPos){
-//        int result = 0;
-//        int w = bitmapDimensions/2;
-//        int rightPoint = 0;
-//        int leftPoint = 0;
-//        rightPoint = xPos + w;
-//        leftPoint = xPos - w;
-//        return rightPoint, leftPoint;
-//    }
-//
     public void getViewSize(Canvas canvas){
         WIDTH = canvas.getWidth();
         HEIGHT = canvas.getHeight();
+    }
+
+    private Bitmap changeColor(int colorIndex) {
+        Bitmap result = null;
+        if (colorIndex == 1) {
+            return result = BitmapFactory.decodeResource(getResources(), R.drawable.ss_red);
+        } else if (colorIndex == 2) {
+            return result = BitmapFactory.decodeResource(getResources(), R.drawable.ss_green);
+        } else if (colorIndex == 3) {
+            return result = BitmapFactory.decodeResource(getResources(), R.drawable.ss_orange);
+        } else if (colorIndex == 4) {
+            return result = BitmapFactory.decodeResource(getResources(), R.drawable.ss_purple);
+        } else if (colorIndex == 5) {
+            return result = BitmapFactory.decodeResource(getResources(), R.drawable.ss_blue);
+        }
+        return result;
     }
 }
