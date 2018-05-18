@@ -59,6 +59,4 @@ public class Asteroid {
         x += (speed.getXVel());
         y += (speed.getYVel() * speed.getYDir());
     }
-
-
 }

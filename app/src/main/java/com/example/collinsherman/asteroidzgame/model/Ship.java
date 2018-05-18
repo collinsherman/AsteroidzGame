@@ -16,10 +16,16 @@ public class Ship {
         this.bitmap = bitmap;
         this.x = x;
         this.y = y;
-        speed = new Speed(0, 0);
+        speed = new Speed();
     }
 
     public Speed getSpeed() { return speed; }
+
+    public void setXSpeed(int vel) { speed.setXVel(vel);}
+
+    public void setYSpeed(int vel) { speed.setYVel(vel);}
+
+    public void setXDirection(int dir) { speed.setXDir(dir);}
 
     public Bitmap getBitmap() { return bitmap; }
 
@@ -42,11 +48,11 @@ public class Ship {
     public int getBottom() { return (y + bitmap.getHeight() / 2);}
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(bitmap, x - (canvas.getWidth() / 2), y - (canvas.getHeight() / 2), null);
+        canvas.drawBitmap(bitmap, x - (bitmap.getWidth() / 2), y - (bitmap.getHeight()/2), null);
     }
 
     public void update() {
-        x += (speed.getXVel());
+        x += (speed.getXVel() * speed.getXDir());
         y += (speed.getYVel() * speed.getYDir());
     }
 }

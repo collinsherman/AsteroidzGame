@@ -39,7 +39,11 @@ public class Speed {
     // Direction methods
     public int getYDir() { return yDir; }
 
+    public int getXDir() { return xDir; }
+
     public void setYDir(int yDir) { this.yDir = yDir; }
+
+    public void setXDir(int xDir) { this.xDir = xDir; }
 
     public void toggleYDirection() {
         int randomChange = ThreadLocalRandom.current().nextInt(0, 2);

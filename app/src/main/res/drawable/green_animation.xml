@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ss_green" android:duration="100"/>
+    <item android:drawable="@drawable/ss_green2" android:duration="100"/>
+    <item android:drawable="@drawable/ss_green3" android:duration="100"/>
+    <item android:drawable="@drawable/ss_green4" android:duration="100"/>
+    <item android:drawable="@drawable/ss_green3" android:duration="100"/>
+    <item android:drawable="@drawable/ss_green2" android:duration="100"/>
+</animation-list>
