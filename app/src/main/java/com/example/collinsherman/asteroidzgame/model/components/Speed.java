@@ -3,10 +3,14 @@ package com.example.collinsherman.asteroidzgame.model.components;
 public class Speed {
 
     public static final int DIRECTION_DOWN = 1;
+    public static final int DIRECTION_RIGHT = 1;
+    public static final int DIRECTION_LEFT = -1;
 
     private float xVel = 0;
     private float yVel = 5;
     private int yDir = DIRECTION_DOWN;
+    private int xDir = 0;
+
 
     public Speed() {
         this.xVel = 0;
@@ -30,5 +34,9 @@ public class Speed {
     // Direction methods
     public int getYDir() { return yDir; }
 
+    public int getXDir() { return xDir; }
+
     public void setYDir(int yDir) { this.yDir = yDir; }
+
+    public void setXDir(int xDir) {this.xDir = xDir;}
 }
