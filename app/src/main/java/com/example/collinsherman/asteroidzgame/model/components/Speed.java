@@ -1,21 +1,30 @@
 package com.example.collinsherman.asteroidzgame.model.components;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Speed {
 
     public static final int DIRECTION_DOWN = 1;
+    public static final int DIRECTION_RIGHT = 1;
 
-    private float xVel = 0;
-    private float yVel = 5;
+    int randomX = ThreadLocalRandom.current().nextInt(0, 4);
+    int randomY = ThreadLocalRandom.current().nextInt(8, 21);
+
+    private float xVel = randomX;
+    private float yVel = randomY;
     private int yDir = DIRECTION_DOWN;
+    private int xDir = DIRECTION_RIGHT;
 
     public Speed() {
-        this.xVel = 0;
-        this.yVel = 5;
+        this.xVel = randomX;
+        this.yVel = randomY;
+        this.toggleXDirection();
     }
 
     public Speed(float xVel, float yVel) {
         this.xVel = xVel;
         this.yVel = yVel;
+        this.toggleXDirection();
     }
 
     // Velocity methods
@@ -31,4 +40,18 @@ public class Speed {
     public int getYDir() { return yDir; }
 
     public void setYDir(int yDir) { this.yDir = yDir; }
+
+    public void toggleYDirection() {
+        int randomChange = ThreadLocalRandom.current().nextInt(0, 2);
+        if (randomChange == 1) {
+            yDir = yDir * -1;
+        }
+    }
+
+    public void toggleXDirection() {
+        int randomChange = ThreadLocalRandom.current().nextInt(0, 2);
+        if (randomChange == 1) {
+            xVel = xVel * -1;
+        }
+    }
 }
